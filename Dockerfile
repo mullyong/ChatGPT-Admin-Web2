@@ -4,14 +4,14 @@ FROM node:18.10.0
 # 设置容器中的工作目录
 WORKDIR /app
 
-# 安装 pnpm
-RUN npm install -g pnpm
-
-# 拷贝 package.json 和 pnpm-lock.yaml 到容器中
+# 复制package.json以及pnpm-lock.yaml到工作目录
 COPY package.json pnpm-lock.yaml ./
 
+# 安装pnpm
+RUN npm install -g pnpm
+
 # 安装项目依赖
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 # 拷贝项目文件到工作目录
 COPY . .
