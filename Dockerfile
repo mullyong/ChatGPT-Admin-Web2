@@ -2,10 +2,7 @@
 FROM node:18.10.0
 
 # 设置容器中的工作目录
-WORKDIR /usr/src/app
-
-# 克隆项目仓库
-RUN git clone https://github.com/AprilNEA/ChatGPT-Admin-Web.git .
+WORKDIR /app
 
 # 安装 pnpm
 RUN npm install -g pnpm
@@ -14,7 +11,6 @@ RUN npm install -g pnpm
 RUN pnpm install
 
 # 设置环境变量，以便连接到 MySQL 数据库
-# 注意：你应该将 '1Yjo3FnSVsNHO2GAQ4xZ8Pg60Wd579JC' 替换为你的实际密码
 ENV DATABASE_URL=mysql://root:1Yjo3FnSVsNHO2GAQ4xZ8Pg60Wd579JC@hkg1.clusters.zeabur.com:31685/zeabur
 
 # 设置环境变量，以便连接到您的Redis服务器
