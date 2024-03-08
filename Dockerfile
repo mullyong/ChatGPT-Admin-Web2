@@ -16,9 +16,6 @@ RUN pnpm install --frozen-lockfile
 # 拷贝项目文件到工作目录
 COPY . .
 
-# 这将在工作空间根目录显式运行 pnpm add 命令
-#RUN pnpm add @prisma/client --workspace-root
-
 # 设置环境变量（这些环境变量应该在部署时从外部传入，而不是写在 Dockerfile 中，为了示例这里写在这里）
 # 你应该在部署时通过 docker run 的 -e 参数或者 docker-compose.yml 等方式来动态设置
 ENV DATABASE_URL=postgresql://root:h129be4ZGw0DEx6X5U8zJBqfo3P7Lait@hkg1.clusters.zeabur.com:32593/zeabur
