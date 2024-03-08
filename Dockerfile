@@ -1,20 +1,23 @@
 # 使用官方 Node.js 环境作为父镜像
 FROM node:18.10.0
 
-# 设置容器中的工作目录
-WORKDIR /app
-
-# 复制package.json以及pnpm-lock.yaml到工作目录
-COPY package.json pnpm-lock.yaml ./
-
-# 安装pnpm
+# 安装 pnpm
 RUN npm install -g pnpm
 
-# 安装项目依赖
-RUN pnpm install
+# 设置工作目录
+WORKDIR /app
+
+# 复制 package.json 和 pnpm-lock.yaml 文件
+COPY package.json pnpm-lock.yaml ./
+
+# 安装依赖
+RUN pnpm install --frozen-lockfile
 
 # 拷贝项目文件到工作目录
 COPY . .
+
+# 这将在工作空间根目录显式运行 pnpm add 命令
+RUN pnpm add @prisma/client --workspace-root
 
 # 设置环境变量（这些环境变量应该在部署时从外部传入，而不是写在 Dockerfile 中，为了示例这里写在这里）
 # 你应该在部署时通过 docker run 的 -e 参数或者 docker-compose.yml 等方式来动态设置
