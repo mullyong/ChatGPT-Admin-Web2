@@ -8,6 +8,11 @@
     "type": "git",
     "url": "git+https://github.com/AprilNEA/ChatGPT-Admin-Web"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "prisma"
+  ],
   "scripts": {
     "build": "turbo run build",
     "build:frontend": "turbo run build --filter frontend",
