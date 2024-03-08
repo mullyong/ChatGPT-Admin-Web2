@@ -1,4 +1,4 @@
 packages:
-  - 'apps/*'
   - 'packages/*'
   - 'prisma'
+ignore-workspace-root-check: true
